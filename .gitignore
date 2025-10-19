@@ -1,0 +1,48 @@
+# Ignore Python virtual environments
+backend/genaienv/
+backend/venv/
+*.venv/
+.venv/
+
+# Ignore environment and cache configs
+.env
+*.env
+
+# Ignore compiled Python files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore build or temporary outputs
+*.log
+outputs/
+artifacts/*.pdf
+artifacts/*.pptx
+uploads/
+data/*.db
+*.db-journal
+
+# Ignore frontend node modules & build cache
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/.tauri-build/
+
+# Ignore OS / IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# Ignore packaging or archive files
+*.zip
+*.tar.gz
+*.bak
+*.tmp
+
+# Allow placeholder files inside normally ignored folders
+!artifacts/.placeholder
+!uploads/.placeholder
+!data/.placeholder

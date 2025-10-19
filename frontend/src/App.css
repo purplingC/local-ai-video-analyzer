@@ -1,0 +1,142 @@
+:root {
+  --accent-purple: #a27bff;
+  --dark-bg: #121212;
+  --card-bg: #1e1e1e;
+  --text-color: #ffffff;
+  --subtle-gray: #aaaaaa;
+
+  font-family: 'Inter', Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  color: var(--text-color);
+  background-color: var(--dark-bg);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Header */
+h2 {
+  color: var(--accent-purple);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* Upload Section */
+.upload-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.upload-section input[type="file"] {
+  color: var(--subtle-gray);
+}
+
+.upload-section span {
+  font-size: 0.9rem;
+  color: var(--subtle-gray);
+}
+
+/* Chat Box */
+.chat-box {
+  width: 90%;
+  max-width: 900px;
+  height: 350px;
+  overflow-y: auto;
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  margin-bottom: 15px;
+}
+
+.message {
+  margin-bottom: 12px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.message.user {
+  background: rgba(162, 123, 255, 0.15);
+  text-align: right;
+}
+
+.message.assistant {
+  background: rgba(255, 255, 255, 0.08);
+  text-align: left;
+}
+
+.message b {
+  color: var(--accent-purple);
+}
+
+/* Input Row */
+.input-section {
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  max-width: 900px;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #2f2f2f;
+  background-color: #181818;
+  color: var(--text-color);
+  font-size: 1rem;
+}
+
+input[type="text"]:focus {
+  border-color: var(--accent-purple);
+  outline: none;
+}
+
+/* Buttons */
+button {
+  background-color: var(--accent-purple);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+button:hover {
+  background-color: #bfa1ff;
+}
+
+button:active {
+  background-color: #8b68ff;
+}
+
+/* Scrollbar */
+.chat-box::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chat-box::-webkit-scrollbar-thumb {
+  background-color: rgba(162, 123, 255, 0.4);
+  border-radius: 8px;
+}

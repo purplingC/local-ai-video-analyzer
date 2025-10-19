@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package video_analysis;
+
+// Service definition
+service VideoAnalysis {
+  rpc TranscribeVideo (VideoRequest) returns (TextResponse);
+  rpc AnalyzeVideo (VideoRequest) returns (AnalysisResponse);
+  rpc GenerateReport (ReportRequest) returns (ReportResponse);
+  rpc ClarifyQuery (ClarificationRequest) returns (ClarificationResponse);
+  rpc GetChatHistory (HistoryRequest) returns (HistoryResponse);
+}
+
+// Request / Response Messages
+message VideoRequest {
+  string file_path = 1;
+}
+
+message TextResponse {
+  string transcript = 1;
+}
+
+message AnalysisResponse {
+  repeated string objects = 1;
+  repeated string graphs = 2;
+}
+
+message ReportRequest {
+  string file_path = 1;
+  string report_type = 2;
+}
+
+message ReportResponse {
+  string report_path = 1;
+}
+
+message ClarificationRequest {
+  string query = 1;
+  repeated string options = 2;
+}
+
+message ClarificationResponse {
+  string selected_option = 1;
+  string message = 2;
+  repeated string options = 3;  
+}
+
+message HistoryRequest {
+  int32 last_n = 1;
+}
+
+message HistoryResponse {
+  repeated string messages = 1;
+}
