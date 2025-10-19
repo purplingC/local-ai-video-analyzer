@@ -27,6 +27,8 @@ After downloading:
 1. Place `model_files.zip` file in the project root.
 2. Extract it into `backend/models/` folder.
 
+---
+
 
 ### Setup Backend  
 Set up the backend environment, install dependencies.
@@ -36,8 +38,9 @@ Please note that you have Python and Node installed.
 - .\venv\Scripts\activate 
 - pip install -r requirements.txt
 
+--- 
 
-#### Run Backend
+### Run Backend
 Start all agents + backend, 5 separate terminals are opened.
 - .\run_all.ps1
 - Open http://127.0.0.1:8000/docs to test Swagger UI.
@@ -46,17 +49,20 @@ Other Functions to be Noted (Backend - Swagger UI)
 - GET /history – Retrieve recent chat history stored in SQLite.
 - DELETE /history – Clear all stored chat messages and reset the local conversation log.
 
+---
 
 ### Setup Frontend
 Install dependencies.
 - cd frontend
 - npm install
 
-#### Run Frontend
+---
+
+### Run Frontend
 Launch the app interface.
 - npm run tauri dev
 
-
+---
 
 ## Example Input Files
 Sample videos are provided in the `/sample_data/` folder.
