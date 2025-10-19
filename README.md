@@ -22,6 +22,9 @@ All outputs and chat history are stored locally using **SQLite** and **localStor
 ---
 
 ## Quick Start  
+### ### Pre-Downloaded Offline Models
+To run this project fully offline, please extract the provided `model_files.zip` into `backend/models`folder.
+
 ### Setup Backend  
 Set up the backend environment, install dependencies.
 - cd backend

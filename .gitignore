@@ -46,3 +46,7 @@ Thumbs.db
 !artifacts/.placeholder
 !uploads/.placeholder
 !data/.placeholder
+
+# Model weights stored separately due to file size
+backend/models/
+!backend/models/.placeholder
