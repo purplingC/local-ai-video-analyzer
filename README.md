@@ -5,7 +5,7 @@
 ## Project Overview
 A **fully local AI desktop application** designed to analyze short video clips (~1 minute) entirely offline. The system allows users to **transcribe speech**, **detect visual objects** and **generate summarized reports (PDF or PPTX)** through a chat-style conversational interface (React and Tauri). 
 
-All models are local, the only pre-download required is the SentenceTransformer intent matcher which, once cached, runs 100% offline
+All models are local, the only pre-download required is the SentenceTransformer intent matcher which, once cached, runs 100% offline.
 
 ---
 
@@ -24,14 +24,13 @@ All outputs and chat history are stored locally using **SQLite** and **localStor
 ## Quick Start  
 ### Pre-Downloaded Pre-Trained Models (Required for Offline Run)
 Due to GitHub file size limitations, the AI models are provided separately.
-To run this project fully offline, please extract the provided `model_files.zip` into `backend/models`folder.
 
 **Download here:**  
 https://drive.google.com/file/d/1rN1t8E1ZpD1q0bdEI8GhM-3pnYD_8kuG/view?usp=sharing 
 
 After downloading:
-1. Place `model_files.zip` in the project root.
-2. Extract it into `backend/models/`.
+1. Place `model_files.zip` file in the project root.
+2. Extract it into `backend/models/` folder.
 
 ---
 
@@ -73,25 +72,26 @@ Sample videos are provided in the `/sample_data/` folder.
 
 ### How to Use
 1. Launch the app.  
-2. Select any `.mp4` file from the `sample_data` folder.
+2. Select any `.mp4` file from the `/sample_data/` folder.
 3. Then, click **“Upload”**.
-4. Interact with the assistant by querying or clicking the buttons below the chat interface
+4. Interact with the assistant by querying or clicking the buttons below the chat interface.
 
 ---
 
 ## Sample Queries
-Transcribe the video
-Detect objects in the video
-Generate a PDF report
-Generate reports 
+- Transcribe the video
+- Detect objects in the video
+- Generate a PDF report
+- Generate reports 
 
 ---
 
 ## Generated Outputs Stored Location
-Outputs from transcription agents are stored under the `uploads` folder.
-Outputs from vision agents are stored under the `uploads` folder.
-Outputs from generation agents are stored under the `artifacts` folder.
-All chat history are stored in chat_history.db.
+- Outputs from transcription agents are stored under the `backend/uploads/` folder.
+- Outputs from vision agents are stored under the `backend/uploads/` folder.
+- Outputs from generation agents are stored under the `backend/artifacts/` folder.
+- All system behaviour and user-assistant interaction history are stored in `backend/data/chat_history.db`.
+- Logs can be found in each separate terminals when running backend.
 
 ---
 
@@ -102,13 +102,11 @@ User can reply pdf, pptx or both.
 ---
 
 ## Technical Highlights
-- Fully offline AI inference (OpenVINO + Hugging Face pipelines)
-- gRPC communication between all agents (Transcription, Vision, Generation + MCP)
-- Intent classification using SentenceTransformer embeddings (semantic query understanding)
+- **Python**-based backend
+- Fully offline AI inference (**OpenVINO** + **Hugging Face pipelines**) after pre-downloaded models
+- **gRPC** communication between all agents (Transcription, Vision, Generation + MCP)
+- Intent classification using **SentenceTransformer** embeddings (semantic query understanding)
 - Confidence-based routing with human-in-the-loop clarification (MCP Server + terminal logging)
-- Offline summarization using T5-small model (optimized with OpenVINO)
-- Persistent chat history stored locally (SQLite + localStorage)
-- Cross-platform desktop app built with React + Tauri (lightweight and offline-capable)
-
-
-**Last Updated:** October 20, 2025  
+- Offline summarization using **T5-small** model (optimized with **OpenVINO**)
+- Persistent chat history stored locally (**SQLite** + localStorage)
+- Cross-platform desktop app built with **React** + **Tauri** (lightweight and offline-capable)
