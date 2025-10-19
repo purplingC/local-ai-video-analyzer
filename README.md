@@ -22,17 +22,27 @@ All outputs and chat history are stored locally using **SQLite** and **localStor
 ---
 
 ## Quick Start  
-### ### Pre-Downloaded Offline Models
+### Pre-Downloaded Pre-Trained Models (Required for Offline Run)
+Due to GitHub file size limitations, the AI models are provided separately.
 To run this project fully offline, please extract the provided `model_files.zip` into `backend/models`folder.
+
+**Download here:**  
+https://drive.google.com/file/d/1rN1t8E1ZpD1q0bdEI8GhM-3pnYD_8kuG/view?usp=sharing 
+
+After downloading:
+1. Place `model_files.zip` in the project root.
+2. Extract it into `backend/models/`.
+
+---
 
 ### Setup Backend  
 Set up the backend environment, install dependencies.
+Please note that you have Python and Node installed.
 - cd backend
 - python -m venv venv (if not exists)
 - .\venv\Scripts\activate 
 - pip install -r requirements.txt
 
-Please note that you have Python and Node installed.
 
 #### Run Backend
 Start all agents + backend, 5 separate terminals are opened.
