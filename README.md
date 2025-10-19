@@ -1,13 +1,9 @@
 # Local AI Video Analyzer
-
----
-
 ## Project Overview
 A **fully local AI desktop application** designed to analyze short video clips (~1 minute) entirely offline. The system allows users to **transcribe speech**, **detect visual objects** and **generate summarized reports (PDF or PPTX)** through a chat-style conversational interface (React and Tauri). 
 
 All models are local, the only pre-download required is the SentenceTransformer intent matcher which, once cached, runs 100% offline.
 
----
 
 ## Architecture Overview
 The system follows a modular, multi-agent architecture that runs fully offline. The **React + Tauri** frontend provides a chat-style interface that connects to the **FastAPI** backend via **gRPC**. The backend routes user queries to the **MCP** Server, which interprets intent using **SentenceTransformer** embeddings and confidence scoring. 
@@ -19,7 +15,6 @@ Depending on the query, tasks are handled by specialized local AI agents:
 
 All outputs and chat history are stored locally using **SQLite** and **localStorage**
 
----
 
 ## Quick Start  
 ### Pre-Downloaded Pre-Trained Models (Required for Offline Run)
@@ -32,7 +27,6 @@ After downloading:
 1. Place `model_files.zip` file in the project root.
 2. Extract it into `backend/models/` folder.
 
----
 
 ### Setup Backend  
 Set up the backend environment, install dependencies.
@@ -52,7 +46,6 @@ Other Functions to be Noted (Backend - Swagger UI)
 - GET /history – Retrieve recent chat history stored in SQLite.
 - DELETE /history – Clear all stored chat messages and reset the local conversation log.
 
----
 
 ### Setup Frontend
 Install dependencies.
@@ -63,7 +56,7 @@ Install dependencies.
 Launch the app interface.
 - npm run tauri dev
 
----
+
 
 ## Example Input Files
 Sample videos are provided in the `/sample_data/` folder.
@@ -76,7 +69,7 @@ Sample videos are provided in the `/sample_data/` folder.
 3. Then, click **“Upload”**.
 4. Interact with the assistant by querying or clicking the buttons below the chat interface.
 
----
+
 
 ## Sample Queries
 - Transcribe the video
@@ -84,7 +77,7 @@ Sample videos are provided in the `/sample_data/` folder.
 - Generate a PDF report
 - Generate reports 
 
----
+
 
 ## Generated Outputs Stored Location
 - Outputs from transcription agents are stored under the `backend/uploads/` folder.
@@ -93,13 +86,13 @@ Sample videos are provided in the `/sample_data/` folder.
 - All system behaviour and user-assistant interaction history are stored in `backend/data/chat_history.db`.
 - Logs can be found in each separate terminals when running backend.
 
----
+
 
 ## Human-in-the-loop Logic
 Example: When user queries "Generate report", the system will ask user which reports format. 
 User can reply pdf, pptx or both.
 
----
+
 
 ## Technical Highlights
 - **Python**-based backend
