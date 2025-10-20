@@ -1,12 +1,44 @@
 # Local AI Video Analyzer
 ## Project Overview
-A **fully local AI desktop application** designed to analyze short video clips (~1 minute) entirely offline. The system allows users to **transcribe speech**, **detect visual objects** and **generate summarized reports (PDF or PPTX)** through a chat-style conversational interface (React and Tauri). 
+A **fully offline AI desktop application** designed to analyze short videos (~1 minute) in terms of **transcribing speech**, **detecting visual objects** and **generating summarized reports (PDF or PPTX)** through an interactive chat-style interface built with **React** and **Tauri**. 
 
-All models are local, the only pre-download required is the SentenceTransformer intent matcher which, once cached, runs 100% offline.
+Please note that pre-download models such as the **SentenceTransformer**, **Hugging Face DETR** and **T5-small** models are required to ensure all AI operations can run with no internet connection.
 
 
-## Architecture Overview
-The system follows a modular, multi-agent architecture that runs fully offline. The **React + Tauri** frontend provides a chat-style interface that connects to the **FastAPI** backend via **gRPC**. The backend routes user queries to the **MCP** Server, which interprets intent using **SentenceTransformer** embeddings and confidence scoring. 
+
+## System Architecture Overview
++----------------------+
+|   React + Tauri UI   |
+|  (User Interaction)  |
++----------+-----------+
+           |
+           ▼
++----------------------+
+| FastAPI + gRPC Layer |
+| (Request Routing)    |
++----------+-----------+
+           |
+           ▼
++----------------------+
+|     MCP Server       |
+| (Intent Detection)   |
++----------+-----------+
+     ┌──────────────┬──────────────┬──────────────┐
+     ▼              ▼              ▼
++-----------+  +-----------+  +-----------------+
+|Transcribe |  |   Vision  |  |   Generation    |
+|(Whisper)  |  | (DETR)    |  | (T5 + OpenVINO) |
++-----------+  +-----------+  +-----------------+
+           │
+           ▼
++----------------------+
+|  SQLite + localStorage  |
+| (Output & Chat History) |
++----------------------+
+
+
+
+The **React + Tauri** frontend provides a chat-style interface that connects to the **FastAPI** backend via **gRPC**. The backend routes user queries to the **MCP** Server, which interprets intent using **SentenceTransformer** embeddings and confidence scoring. 
 
 Depending on the query, tasks are handled by specialized local AI agents:
 - Transcription Agent –> speech-to-text conversion using **Faster-Whisper**
@@ -16,16 +48,42 @@ Depending on the query, tasks are handled by specialized local AI agents:
 All outputs and chat history are stored locally using **SQLite** and **localStorage**
 
 
+## Technical Highlights
+| Component | Technology / Framework |
+| ---------- | ---------------------- |
+| **Frontend** | React + Tauri |
+| **Backend** | FastAPI + gRPC |
+| **MCP Server** | SentenceTransformer (all-MiniLM-L6-v2) |
+| **Transcription Agent** | Faster-Whisper |
+| **Vision Agent** | Hugging Face DETR |
+| **Generation Agent** | T5-small (OpenVINO-optimized) |
+| **Storage Layer** | SQLite + localStorage |
+| **API Layer** | FastAPI REST API + Swagger UI |
+
+
+
 ## Quick Start  
-### Pre-Downloaded Pre-Trained Models (Required for Offline Run)
-Due to GitHub file size limitations, the AI models are provided separately.
+### Pre-Downloaded Models (Required for Offline Run)
+Due to GitHub file size limitations, the **SentenceTransformer**, **Hugging Face DETR** and **T5-small** models are provided separately.
 
 **Download here:**  
 https://drive.google.com/file/d/1rN1t8E1ZpD1q0bdEI8GhM-3pnYD_8kuG/view?usp=sharing 
 
-After downloading:
-1. Place `model_files.zip` file in the project root.
-2. Extract it into `backend/models/` folder.
+**After downloading:** 
+1. Place the `model_files.zip` file in the project root.
+2. Extract it into `backend/models/` folder
+- Run this in project root -> powershell -Command "Expand-Archive -Path 'model_files.zip' -DestinationPath 'backend/models' -Force"
+4. The `backend/models/` folder should look like this:
+    
+backend/
+├── models/
+│   ├── model_files/           
+│   │   ├── detr-resnet-50/      
+│   │   ├── intent_embed/               
+│   │   ├── t5_small/          
+│   │   └── .placeholder   # ignore duplicate
+│   └── .placeholder       # ignore duplicate
+
 
 ---
 
@@ -41,7 +99,7 @@ Please note that you have Python and Node installed.
 --- 
 
 ### Run Backend
-Start all agents + backend, 5 separate terminals are opened.
+Start all agents, MCP and backend, 5 separate terminals are opened.
 - .\run_all.ps1
 - Open http://127.0.0.1:8000/docs to test Swagger UI.
 
@@ -69,21 +127,20 @@ Sample videos are provided in the `/sample_data/` folder.
 - sample_meeting.mp4
 - sample_pitch.mp4 
 
+---
+
+
 ### How to Use
 1. Launch the app.  
 2. Select any `.mp4` file from the `/sample_data/` folder.
 3. Then, click **“Upload”**.
 4. Interact with the assistant by querying or clicking the buttons below the chat interface.
 
-
-
 ## Sample Queries
 - Transcribe the video
 - Detect objects in the video
 - Generate a PDF report
 - Generate reports 
-
-
 
 ## Generated Outputs Stored Location
 - Outputs from transcription agents are stored under the `backend/uploads/` folder.
@@ -99,13 +156,3 @@ Example: When user queries "Generate report", the system will ask user which rep
 User can reply pdf, pptx or both.
 
 
-
-## Technical Highlights
-- **Python**-based backend
-- Fully offline AI inference (**OpenVINO** + **Hugging Face pipelines**) after pre-downloaded models
-- **gRPC** communication between all agents (Transcription, Vision, Generation + MCP)
-- Intent classification using **SentenceTransformer** embeddings (semantic query understanding)
-- Confidence-based routing with human-in-the-loop clarification (MCP Server + terminal logging)
-- Offline summarization using **T5-small** model (optimized with **OpenVINO**)
-- Persistent chat history stored locally (**SQLite** + localStorage)
-- Cross-platform desktop app built with **React** + **Tauri** (lightweight and offline-capable)
