@@ -36,15 +36,15 @@ All outputs and chat history are stored locally using **SQLite** and **localStor
 Due to GitHub file size limitations, the **SentenceTransformer**, **Hugging Face DETR** and **T5-small** models are provided separately.
 
 **Download here:**  
-https://drive.google.com/file/d/1rN1t8E1ZpD1q0bdEI8GhM-3pnYD_8kuG/view?usp=sharing 
+https://drive.google.com/file/d/1rN1t8E1ZpD1q0bdEI8GhM-3pnYD_8kuG/view?usp=drive_link
 
 **After downloading:** 
-1. Place the `model_files.zip` file in the project root.
-2. Extract it into `backend/models/` folder by running this command in project root terminal
-   - powershell -Command "Expand-Archive -Path 'model_files.zip' -DestinationPath 'backend/models' -Force"
-4. The `backend/models/` folder should look like this (ignore duplicate `.placeholder` file:
+1. Extract the `model_files.zip` file.
+2. Place a total of 3 folders directly into `backend/models/` folder -> `detr-resnet-50`, `intent_embed`, `t5-small`
+3. The `backend/models/` folder should look like this:
     
-<img width="283" height="307" alt="image" src="https://github.com/user-attachments/assets/36c1ac63-e33c-42b9-af36-1965b089ca80" />
+<img width="298" height="222" alt="image" src="https://github.com/user-attachments/assets/e924eefa-91a3-49ea-b622-621d0233398e" />
+
 
 
 
@@ -62,7 +62,8 @@ Please note that you have Python and Node installed.
 --- 
 
 ### Run Backend
-Start all agents, MCP and backend, 5 separate terminals are opened.
+Start all agents, MCP and backend in activated venv, 5 separate terminals are opened. 
+- cd backend
 - .\run_all.ps1
 - Open http://127.0.0.1:8000/docs to test Swagger UI.
 
@@ -76,7 +77,8 @@ Install dependencies.
 ---
 
 ### Run Frontend
-Launch the app interface.
+After running backend (.\run_all.ps1), launch the app interface.
+- cd frontend
 - npm run tauri dev
 
 
