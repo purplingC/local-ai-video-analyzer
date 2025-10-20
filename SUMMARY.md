@@ -1,33 +1,38 @@
 # What Works?
 - Analyzes short `.mp4` videos (English only)
-- Transcription (speech-to-text via Transcription Agent)
-- Object recognition (Vision Agent using DETR)
-- Summarized report generation in PDF and PPTX (Generation Agent)
-- Human-in-the-loop query clarification (MCP Server)
-- Persistent offline chat history (SQLite + localStorage)
+- Extracts and transcribes audio (Transcription Agent)
+- Identifies and recognizes objects (Vision Agent)
+- Produce summarized reports in PDF and PPTX formats (Generation Agent)
+- Integrated simple human-in-the-loop query clarification (MCP Server)
+- Interprets user queries and logs intent confidence scores for decision routing (MCP Server)
+- Keeps complete chat history locally, even after app restarts (SQLite + localStorage)
+- Enables users to interact through a chat-style interface to perform all operations
 
 # What Doesn't Work?
-- Graph/text detection and captioning not included (Vision Agent handles objects detection only)
+- Graph/text detection and captioning are not integrated (Vision Agent handles objects detection only)
+- Multilingual transcription has not been tested so the system currently operates in English only (language="en")
 
 # Encountered Challenges
 - OpenVINO model installation failure
-    -> Solution: switched to Hugging Face Transformers model (Zero-Shot Object Detection) for vision tasks.
+    -> Solution: switched to Hugging Face Transformers model (Zero-Shot Object Detection) for vision tasks
 - Rust linker missing during Tauri build 
     -> Solution: Required installation of Visual Studio Build Tools (MSVC toolchain)
-- Build failed due to JSX syntax parsing issue when using .js files.
-    -> Solution: adjusting React/Vite configuration or renaming to .jsx.
+- JSX Parsing Errors During Build
+    -> Solution: adjusting React/Vite configuration and renaming `.js` to .`jsx` files
 - Packaging caused crashes / memory errors (PyInstaller) 
     -> Solution: Skipped PyInstaller packaging due to laptop limitation
 - IntentMatcher, DETR model and T5-Small model setup for offline mode
-    -> Solution: Pre-downloaded all and saved into `backend/models/intent_embed/`to ensure complete offline operation.
-    
-# Potential Improvements (If No Technological Constraints)
+    -> Solution: Pre-downloaded and stored all models in `backend/models/`to ensure full offline operation
+
+# What Could Be Achieved With More Time or Hardware
+- Smarter intent and query understanding between agents
+- Extended Vision Agent capabilities (graph/text caption recognition)
+- More comprehensive technical documentation
+- Optimization for larger or longer video files
+- Expanded testing and evaluation for accuracy and speed
+
+# Potential Improvements
 - Cross-platform packaging and deployment 
 - Multi-language transcription and translation support
 - Automatic keyframe extraction with highlighted detections
-
-# What Could Be Achieved With More Time or Hardware
-- Smarter query understanding across agents
-- Graph and text caption recognition in Vision Agent
-- Elaborate more detailed technical documentation 
-- Research and checked whether accuracy evaluation is required
+- Enhanced UI/UX for smoother user interaction and progress feedback
