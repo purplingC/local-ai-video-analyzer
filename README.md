@@ -94,8 +94,9 @@ Sample videos are provided in the `/sample_data/` folder.
 ### How to Use
 1. Launch the app.  
 2. Select any `.mp4` file from the `/sample_data/` folder.
-3. Then, click **“Upload”**.
-4. Interact with the assistant by querying or clicking the buttons below the chat interface.
+3. If you cannot access the sample videos in the `/sample_data/` folder, you can download them directly from the GitHub repository.
+4. Then, click **“Upload”**.
+5. Interact with the assistant by querying or clicking the buttons below the chat interface.
 
 ## Sample Queries
 - Transcribe the video
