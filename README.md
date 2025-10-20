@@ -90,7 +90,6 @@ Sample videos are provided in the `/sample_data/` folder.
 
 ---
 
-
 ### How to Use
 1. Launch the app.  
 2. Select any `.mp4` file from the `/sample_data/` folder.
@@ -104,17 +103,11 @@ Sample videos are provided in the `/sample_data/` folder.
 - Generate a PDF report
 - Generate reports 
 
-## Generated Outputs Stored Location
+## Backend - Storage of Generated Outputs
 - Outputs from transcription agents are stored under the `backend/uploads/` folder.
 - Outputs from vision agents are stored under the `backend/uploads/` folder.
 - Outputs from generation agents are stored under the `backend/artifacts/` folder.
 - All system behaviour and user-assistant interaction history are stored in `backend/data/chat_history.db`.
 - Logs can be found in each separate terminals when running backend.
-
-
-
-## Human-in-the-loop Logic
-Example: When user queries "Generate report", the system will ask user which reports format. 
-User can reply pdf, pptx or both.
 
 
