@@ -7,37 +7,6 @@ Please note that pre-download models such as the **SentenceTransformer**, **Hugg
 
 
 ## System Architecture Overview
-+----------------------+
-|   React + Tauri UI   |
-|  (User Interaction)  |
-+----------+-----------+
-           |
-           ▼
-+----------------------+
-| FastAPI + gRPC Layer |
-| (Request Routing)    |
-+----------+-----------+
-           |
-           ▼
-+----------------------+
-|     MCP Server       |
-| (Intent Detection)   |
-+----------+-----------+
-     ┌──────────────┬──────────────┬──────────────┐
-     ▼              ▼              ▼
-+-----------+  +-----------+  +-----------------+
-|Transcribe |  |   Vision  |  |   Generation    |
-|(Whisper)  |  | (DETR)    |  | (T5 + OpenVINO) |
-+-----------+  +-----------+  +-----------------+
-           │
-           ▼
-+----------------------+
-|  SQLite + localStorage  |
-| (Output & Chat History) |
-+----------------------+
-
-
-
 The **React + Tauri** frontend provides a chat-style interface that connects to the **FastAPI** backend via **gRPC**. The backend routes user queries to the **MCP** Server, which interprets intent using **SentenceTransformer** embeddings and confidence scoring. 
 
 Depending on the query, tasks are handled by specialized local AI agents:
@@ -71,18 +40,12 @@ https://drive.google.com/file/d/1rN1t8E1ZpD1q0bdEI8GhM-3pnYD_8kuG/view?usp=shari
 
 **After downloading:** 
 1. Place the `model_files.zip` file in the project root.
-2. Extract it into `backend/models/` folder
-- Run this in project root -> powershell -Command "Expand-Archive -Path 'model_files.zip' -DestinationPath 'backend/models' -Force"
-4. The `backend/models/` folder should look like this:
+2. Extract it into `backend/models/` folder by running this command in project root terminal
+   - powershell -Command "Expand-Archive -Path 'model_files.zip' -DestinationPath 'backend/models' -Force"
+4. The `backend/models/` folder should look like this (ignore duplicate `.placeholder` file:
     
-backend/
-├── models/
-│   ├── model_files/           
-│   │   ├── detr-resnet-50/      
-│   │   ├── intent_embed/               
-│   │   ├── t5_small/          
-│   │   └── .placeholder   # ignore duplicate
-│   └── .placeholder       # ignore duplicate
+<img width="283" height="307" alt="image" src="https://github.com/user-attachments/assets/36c1ac63-e33c-42b9-af36-1965b089ca80" />
+
 
 
 ---
@@ -103,10 +66,6 @@ Start all agents, MCP and backend, 5 separate terminals are opened.
 - .\run_all.ps1
 - Open http://127.0.0.1:8000/docs to test Swagger UI.
 
-Other Functions to be Noted (Backend - Swagger UI)
-- GET /history – Retrieve recent chat history stored in SQLite.
-- DELETE /history – Clear all stored chat messages and reset the local conversation log.
-
 ---
 
 ### Setup Frontend
@@ -120,9 +79,9 @@ Install dependencies.
 Launch the app interface.
 - npm run tauri dev
 
----
 
-## Example Input Files
+
+## Sample Input Files
 Sample videos are provided in the `/sample_data/` folder.
 - sample_meeting.mp4
 - sample_pitch.mp4 
