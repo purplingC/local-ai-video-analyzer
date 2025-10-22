@@ -36,7 +36,7 @@ All outputs and chat history are stored locally using **SQLite** and **localStor
 Due to GitHub file size limitations, the **SentenceTransformer**, **Hugging Face DETR** and **T5-small** models are provided separately.
 
 **Download here:**  
-https://drive.google.com/file/d/1rN1t8E1ZpD1q0bdEI8GhM-3pnYD_8kuG/view?usp=drive_link
+https://drive.google.com/file/d/1rN1t8E1ZpD1q0bdEI8GhM-3pnYD_8kuG/view?usp=sharing
 
 **After downloading:** 
 1. Extract the `model_files.zip` file.
